@@ -16,7 +16,7 @@ class Ray2 {
   Vector2 get direction => _direction;
   set direction(Vector2 direction) {
     assert(
-      direction.length2 <= 1,
+      direction.x <= 1 && direction.y <= 1,
       'direction must be normalized',
     );
     _direction = direction;
