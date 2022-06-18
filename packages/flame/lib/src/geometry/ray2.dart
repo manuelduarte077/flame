@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flame/geometry.dart';
 import 'package:meta/meta.dart';
 import 'package:vector_math/vector_math_64.dart';
 
@@ -49,5 +50,37 @@ class Ray2 {
     tMax = min(tMax, max(ty1, ty2));
 
     return tMax >= tMin;
+  }
+
+  /// Gives the point at a certain length of the ray.
+  Vector2 point(double length, {Vector2? out}) {
+    return ((out?..setFrom(direction)) ?? direction.clone())
+      ..scale(length)
+      ..add(origin);
+  }
+
+  late final Vector2 _v1 = Vector2.zero();
+  late final Vector2 _v2 = Vector2.zero();
+  late final Vector2 _v3 = Vector2.zero();
+  double? lineSegmentIntersection(LineSegment segment) {
+    _v1
+      ..setFrom(origin)
+      ..sub(segment.from);
+    _v2
+      ..setFrom(segment.from)
+      ..sub(segment.to);
+    _v3.setValues(-direction.y, direction.x);
+
+    final dot = _v2.dot(_v3);
+    if (dot.abs() < 0.000001) {
+      return null;
+    }
+
+    final t1 = _v2.cross(_v1) / dot;
+    final t2 = _v1.dot(_v3) / dot;
+    if (t1 >= 0 && (t2 >= 0 && t2 <= 1)) {
+      return t1;
+    }
+    return null;
   }
 }
