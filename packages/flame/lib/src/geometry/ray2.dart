@@ -17,7 +17,7 @@ class Ray2 {
   Vector2 get direction => _direction;
   set direction(Vector2 direction) {
     assert(
-      direction.x <= 1 && direction.y <= 1,
+      direction.x.abs() <= 1 && direction.y.abs() <= 1,
       'direction must be normalized',
     );
     _direction = direction;
@@ -83,4 +83,8 @@ class Ray2 {
     }
     return null;
   }
+
+  /// Deep clones the object, i.e. both [origin] and [direction] are cloned into
+  /// a new [Ray2] object.
+  Ray2 clone() => Ray2(origin.clone(), direction.clone());
 }
