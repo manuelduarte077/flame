@@ -12,6 +12,8 @@ class Ray2 {
     this.direction = direction;
   }
 
+  Ray2.zero() : this(Vector2.zero(), Vector2.zero());
+
   Vector2 origin;
   late Vector2 _direction;
   Vector2 get direction => _direction;
@@ -87,4 +89,13 @@ class Ray2 {
   /// Deep clones the object, i.e. both [origin] and [direction] are cloned into
   /// a new [Ray2] object.
   Ray2 clone() => Ray2(origin.clone(), direction.clone());
+
+  void setFrom(Ray2 other) {
+    setWith(origin: other.origin, direction: other.direction);
+  }
+
+  void setWith({required Vector2 origin, required Vector2 direction}) {
+    this.origin.setFrom(origin);
+    this.direction = direction;
+  }
 }
