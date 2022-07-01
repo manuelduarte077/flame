@@ -12,7 +12,7 @@ class Ray2 {
     this.direction = direction;
   }
 
-  Ray2.zero() : this(Vector2.zero(), Vector2.zero());
+  Ray2.empty() : this(Vector2.zero(), Vector2(1, 0));
 
   Vector2 origin;
   late Vector2 _direction;
@@ -28,7 +28,7 @@ class Ray2 {
   }
 
   // These are the inverse of the direction (the normal), they are used to avoid
-  // a division in [intersectsWithAabb2], since the a ray will usually be tried
+  // a division in [intersectsWithAabb2], since a ray will usually be tried
   // against many bounding boxes it's good to pre-calculate it, which is done
   // in the direction setter.
   @visibleForTesting
