@@ -231,4 +231,19 @@ void main() {
       expect(result, Vector2(5, 0));
     });
   });
+
+  group('inversion', () {
+    test('invert', () {
+      final v = Vector2.all(1);
+      v.invert();
+      expect(v, Vector2.all(-1));
+    });
+
+    test('inverted', () {
+      final v = Vector2.all(1);
+      final w = v.inverted();
+      expect(v, Vector2.all(1));
+      expect(w, Vector2.all(-1));
+    });
+  });
 }

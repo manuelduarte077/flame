@@ -89,6 +89,17 @@ extension Vector2Extension on Vector2 {
     return result..scale(dotProduct / other.length2);
   }
 
+  /// Inverts the vector.
+  void invert() {
+    x *= -1;
+    y *= -1;
+  }
+
+  /// Returns the inverse of this vector.
+  Vector2 inverted() {
+    return Vector2.all(-1)..multiply(this);
+  }
+
   /// Smoothly moves this [Vector2] in the direction [target] by a displacement
   /// given by a distance [ds] in that direction.
   ///
