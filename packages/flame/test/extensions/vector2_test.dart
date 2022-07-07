@@ -208,4 +208,27 @@ void main() {
       expectDouble(position.screenAngle(), math.pi / 2);
     });
   });
+
+  group('projection', () {
+    test('Project onto longer vector', () {
+      final u = Vector2(5, 2);
+      final v = Vector2(10, 0);
+      final result = u.projection(v);
+      expect(result, Vector2(5, 0));
+    });
+
+    test('Project onto shorter vector', () {
+      final u = Vector2(5, 2);
+      final v = Vector2(2, 0);
+      final result = u.projection(v);
+      expect(result, Vector2(5, 0));
+    });
+
+    test('Project onto vector in other direction', () {
+      final u = Vector2(5, 2);
+      final v = Vector2(-10, 0);
+      final result = u.projection(v);
+      expect(result, Vector2(5, 0));
+    });
+  });
 }

@@ -80,6 +80,15 @@ extension Vector2Extension on Vector2 {
     }
   }
 
+  /// Project this onto [other].
+  ///
+  /// If [out] is specified, it will be used to provide the result.
+  Vector2 projection(Vector2 other, {Vector2? out}) {
+    final dotProduct = dot(other);
+    final result = (out?..setFrom(other)) ?? other.clone();
+    return result..scale(dotProduct / other.length2);
+  }
+
   /// Smoothly moves this [Vector2] in the direction [target] by a displacement
   /// given by a distance [ds] in that direction.
   ///
